@@ -10,20 +10,12 @@ import ListOutlined from "@mui/icons-material/ListOutlined";
 import { CanAccess, type TreeMenuItem } from "@refinedev/core";
 
 const MAX_LABEL_EXPANDED = 40;
-const MAX_LABEL_COLLAPSED = 10;
 
 const truncateLabel = (text: string, expanded: boolean) => {
   if (expanded) {
     return text.length > MAX_LABEL_EXPANDED ? text.slice(0, MAX_LABEL_EXPANDED) + "…" : text;
   }
-  const spaceIdx = text.indexOf(" ");
-  if (spaceIdx === -1) {
-    return text.length > MAX_LABEL_COLLAPSED ? text.slice(0, MAX_LABEL_COLLAPSED) + "…" : text;
-  }
-  const line1 = text.slice(0, spaceIdx);
-  const rest = text.slice(spaceIdx + 1);
-  const line2 = rest.length > MAX_LABEL_COLLAPSED ? rest.slice(0, MAX_LABEL_COLLAPSED) + "…" : rest;
-  return line1 + "\n" + line2;
+  return text;
 };
 
 interface MenuItemProps {
@@ -69,6 +61,17 @@ export const MenuItem: React.FC<MenuItemProps> = ({
         mx: expanded ? 1 : 0,
         mb: 0.5,
         py: expanded ? 1 : 1.5,
+        color: isSelected ? "primary.dark" : "text.primary",
+        "&.Mui-selected": {
+          backgroundColor: "rgba(31, 106, 58, 0.12)",
+          borderLeft: (theme) => expanded ? `3px solid ${theme.palette.primary.main}` : "none",
+        },
+        "&.Mui-selected:hover": {
+          backgroundColor: "rgba(31, 106, 58, 0.18)",
+        },
+        "&:hover": {
+          backgroundColor: "rgba(31, 106, 58, 0.08)",
+        },
       }}
     >
       <ListItemIcon
@@ -76,24 +79,25 @@ export const MenuItem: React.FC<MenuItemProps> = ({
           minWidth: 0,
           mr: expanded ? 2 : 0,
           justifyContent: "center",
+          color: isSelected ? "primary.main" : "secondary.main",
         }}
       >
         {item.icon || <ListOutlined />}
       </ListItemIcon>
-      <ListItemText
-        primary={truncateLabel(item.label || item.name, expanded)}
-        sx={{
-          m: 0,
-          mt: expanded ? 0 : 0.5,
-          textAlign: expanded ? "left" : "center",
-        }}
-        primaryTypographyProps={{
-          fontSize: expanded ? 14 : 10,
-          fontWeight: isSelected ? 600 : 500,
-          noWrap: expanded,
-          whiteSpace: expanded ? "nowrap" : "pre",
-        }}
-      />
+      {expanded ? (
+        <ListItemText
+          primary={truncateLabel(item.label || item.name, expanded)}
+          sx={{
+            m: 0,
+            textAlign: "left",
+          }}
+          primaryTypographyProps={{
+            fontSize: 14,
+            fontWeight: isSelected ? 600 : 500,
+            noWrap: true,
+          }}
+        />
+      ) : null}
       {hasChildren && expanded && (open ? <ExpandLess /> : <ExpandMore />)}
     </ListItemButton>
   );

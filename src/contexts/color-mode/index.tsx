@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { lightThemeOptions, darkThemeOptions } from "../../../themeOptions";
+import { lightThemeOptions, darkThemeOptions } from "../../theme/themeOptions";
 
 type ColorModeContextType = {
   mode: string;

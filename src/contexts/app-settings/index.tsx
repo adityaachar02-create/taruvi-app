@@ -58,8 +58,8 @@ export interface AppSettingsContextType {
 const getDefaultSettings = (): AppSettings => ({
   displayName: __TARUVI_APP_TITLE__ || "App",
   iconUrl: null,
-  primaryColor: "#EAB308", // Default yellow
-  secondaryColor: "#8B5CF6", // Default purple
+  primaryColor: "#2F7D32", // Default green
+  secondaryColor: "#1F6A3A", // Default deep green
   bannerImageUrl: null,
   category: "general",
   documentationUrl: "",

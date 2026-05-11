@@ -28,20 +28,12 @@ import "./sidenav.css";
 const DRAWER_WIDTH_EXPANDED = 240;
 const DRAWER_WIDTH_COLLAPSED = 72;
 const MAX_LABEL_EXPANDED = 40;
-const MAX_LABEL_COLLAPSED = 10;
 
 const truncateLabel = (text: string, expanded: boolean) => {
   if (expanded) {
     return text.length > MAX_LABEL_EXPANDED ? text.slice(0, MAX_LABEL_EXPANDED) + "…" : text;
   }
-  const spaceIdx = text.indexOf(" ");
-  if (spaceIdx === -1) {
-    return text.length > MAX_LABEL_COLLAPSED ? text.slice(0, MAX_LABEL_COLLAPSED) + "…" : text;
-  }
-  const line1 = text.slice(0, spaceIdx);
-  const rest = text.slice(spaceIdx + 1);
-  const line2 = rest.length > MAX_LABEL_COLLAPSED ? rest.slice(0, MAX_LABEL_COLLAPSED) + "…" : rest;
-  return line1 + "\n" + line2;
+  return text;
 };
 
 interface MuiSidenavProps {
@@ -103,6 +95,17 @@ export const MuiSidenav: React.FC<MuiSidenavProps> = ({ meta }) => {
         mx: expanded ? 1 : 0,
         mb: 0.5,
         py: expanded ? 1 : 1.5,
+        color: isDashboardSelected ? "primary.dark" : "text.primary",
+        "&.Mui-selected": {
+          backgroundColor: "rgba(31, 106, 58, 0.12)",
+          borderLeft: (theme) => expanded ? `3px solid ${theme.palette.primary.main}` : "none",
+        },
+        "&.Mui-selected:hover": {
+          backgroundColor: "rgba(31, 106, 58, 0.18)",
+        },
+        "&:hover": {
+          backgroundColor: "rgba(31, 106, 58, 0.08)",
+        },
       }}
     >
       <ListItemIcon
@@ -110,24 +113,25 @@ export const MuiSidenav: React.FC<MuiSidenavProps> = ({ meta }) => {
           minWidth: 0,
           mr: expanded ? 2 : 0,
           justifyContent: "center",
+          color: isDashboardSelected ? "primary.main" : "secondary.main",
         }}
       >
         <Dashboard />
       </ListItemIcon>
-      <ListItemText
-        primary={truncateLabel(t("dashboard.title", "Dashboard"), expanded)}
-        sx={{
-          m: 0,
-          mt: expanded ? 0 : 0.5,
-          textAlign: expanded ? "left" : "center",
-        }}
-        primaryTypographyProps={{
-          fontSize: expanded ? 14 : 10,
-          fontWeight: isDashboardSelected ? 600 : 500,
-          noWrap: expanded,
-          whiteSpace: expanded ? "nowrap" : "pre",
-        }}
-      />
+      {expanded ? (
+        <ListItemText
+          primary={truncateLabel(t("dashboard.title", "Dashboard"), expanded)}
+          sx={{
+            m: 0,
+            textAlign: "left",
+          }}
+          primaryTypographyProps={{
+            fontSize: 14,
+            fontWeight: isDashboardSelected ? 600 : 500,
+            noWrap: true,
+          }}
+        />
+      ) : null}
     </ListItemButton>
   );
 
@@ -143,6 +147,9 @@ export const MuiSidenav: React.FC<MuiSidenavProps> = ({ meta }) => {
         mx: expanded ? 1 : 0,
         mb: 0.5,
         py: expanded ? 1 : 1.5,
+        "&:hover": {
+          backgroundColor: "rgba(140, 106, 54, 0.08)",
+        },
       }}
     >
       <ListItemIcon
@@ -150,24 +157,25 @@ export const MuiSidenav: React.FC<MuiSidenavProps> = ({ meta }) => {
           minWidth: 0,
           mr: expanded ? 2 : 0,
           justifyContent: "center",
+          color: "secondary.main",
         }}
       >
         <Logout />
       </ListItemIcon>
-      <ListItemText
-        primary={truncateLabel(t("buttons.logout", "Logout"), expanded)}
-        sx={{
-          m: 0,
-          mt: expanded ? 0 : 0.5,
-          textAlign: expanded ? "left" : "center",
-        }}
-        primaryTypographyProps={{
-          fontSize: expanded ? 14 : 10,
-          fontWeight: 500,
-          noWrap: expanded,
-          whiteSpace: expanded ? "nowrap" : "pre",
-        }}
-      />
+      {expanded ? (
+        <ListItemText
+          primary={truncateLabel(t("buttons.logout", "Logout"), expanded)}
+          sx={{
+            m: 0,
+            textAlign: "left",
+          }}
+          primaryTypographyProps={{
+            fontSize: 14,
+            fontWeight: 500,
+            noWrap: true,
+          }}
+        />
+      ) : null}
     </ListItemButton>
   );
 
@@ -190,6 +198,14 @@ export const MuiSidenav: React.FC<MuiSidenavProps> = ({ meta }) => {
             transition: "width 0.2s ease-in-out",
             overflowX: "hidden",
             zIndex: 1200,
+            background: (theme) =>
+              theme.palette.mode === "dark"
+                ? "linear-gradient(180deg, rgba(19, 35, 26, 0.98), rgba(15, 27, 20, 0.98))"
+                : "linear-gradient(180deg, rgba(248, 244, 234, 0.98), rgba(240, 246, 235, 0.98))",
+            boxShadow: (theme) =>
+              theme.palette.mode === "dark"
+                ? "8px 0 28px rgba(0, 0, 0, 0.2)"
+                : "8px 0 32px rgba(44, 73, 42, 0.08)",
           },
         }}
       >

@@ -74,12 +74,25 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           zIndex: 1200,
           borderTop: 1,
           borderColor: "divider",
+          background: (theme) =>
+            theme.palette.mode === "dark"
+              ? "linear-gradient(180deg, rgba(19, 35, 26, 0.98), rgba(15, 27, 20, 0.98))"
+              : "linear-gradient(180deg, rgba(248, 244, 234, 0.98), rgba(240, 246, 235, 0.98))",
         }}
         elevation={3}
       >
         <BottomNavigation
           value={getSelectedValue()}
           showLabels
+          sx={{
+            background: "transparent",
+            "& .MuiBottomNavigationAction-root": {
+              color: "text.secondary",
+            },
+            "& .Mui-selected": {
+              color: "primary.main",
+            },
+          }}
         >
           {/* Dashboard */}
           <BottomNavigationAction
@@ -133,6 +146,19 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         transformOrigin={{
           vertical: "bottom",
           horizontal: "center",
+        }}
+        slotProps={{
+          paper: {
+            sx: {
+              borderRadius: 1,
+              border: 1,
+              borderColor: "divider",
+              background: (theme) =>
+                theme.palette.mode === "dark"
+                  ? "rgba(19, 35, 26, 0.98)"
+                  : "rgba(248, 244, 234, 0.98)",
+            },
+          },
         }}
       >
         {moreItems.map((item) => (

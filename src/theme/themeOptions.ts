@@ -1,158 +1,236 @@
 import { ThemeOptions } from "@mui/material/styles";
 
-const BODY_FONT_FAMILY = "'Open Sans', sans-serif";
-const HEADING_FONT_FAMILY = "'Quicksand', sans-serif";
+const BODY_FONT_FAMILY = "'Source Sans 3', 'Open Sans', sans-serif";
+const HEADING_FONT_FAMILY = "'Libre Baskerville', Georgia, serif";
+
+const sharedComponents: ThemeOptions["components"] = {
+  MuiButton: {
+    styleOverrides: {
+      root: {
+        padding: "6px 14px",
+        fontSize: "0.8125rem",
+        minHeight: "34px",
+        borderRadius: 999,
+        boxShadow: "none",
+      },
+      sizeSmall: {
+        padding: "4px 10px",
+        fontSize: "0.75rem",
+        minHeight: "28px",
+      },
+      contained: {
+        fontWeight: 700,
+      },
+      outlined: {
+        borderWidth: 1,
+      },
+    },
+  },
+  MuiAlert: {
+    styleOverrides: {
+      standardInfo: {
+        border: "1px solid rgba(47, 125, 50, 0.24)",
+      },
+      filledInfo: {
+        fontWeight: 600,
+      },
+    },
+  },
+  MuiTextField: {
+    defaultProps: {
+      size: "small",
+    },
+    styleOverrides: {
+      root: {
+        "& .MuiInputBase-root": {
+          fontSize: "0.8125rem",
+          borderRadius: 8,
+        },
+        "& .MuiInputLabel-root": {
+          fontSize: "0.8125rem",
+        },
+      },
+    },
+  },
+  MuiCard: {
+    styleOverrides: {
+      root: {
+        borderRadius: 8,
+        padding: "8px",
+      },
+    },
+  },
+  MuiCardContent: {
+    styleOverrides: {
+      root: {
+        padding: "8px",
+        "&:last-child": {
+          paddingBottom: "8px",
+        },
+      },
+    },
+  },
+  MuiChip: {
+    styleOverrides: {
+      root: {
+        fontSize: "0.6875rem",
+        height: "24px",
+        borderRadius: 999,
+      },
+      sizeSmall: {
+        fontSize: "0.625rem",
+        height: "20px",
+      },
+    },
+  },
+  MuiPaper: {
+    styleOverrides: {
+      root: {
+        borderRadius: 8,
+        padding: "12px",
+      },
+    },
+  },
+  MuiTableCell: {
+    styleOverrides: {
+      root: {
+        fontSize: "0.8125rem",
+        padding: "10px 12px",
+      },
+      head: {
+        fontWeight: 700,
+      },
+    },
+  },
+  MuiIconButton: {
+    styleOverrides: {
+      root: {
+        padding: "6px",
+      },
+      sizeSmall: {
+        padding: "4px",
+      },
+    },
+  },
+};
 
 export const lightThemeOptions: ThemeOptions = {
   palette: {
     mode: "light",
     primary: {
-      main: '#1565c0',
-      light: '#64b5f6',
-      dark: '#0d47a1',
-      contrastText: '#ffffff',
+      main: "#1f6a3a",
+      light: "#4d9761",
+      dark: "#124728",
+      contrastText: "#f7f1e3",
     },
     secondary: {
-      main: '#475569',
-      light: '#cbd5e1',
-      dark: '#1e293b',
-      contrastText: '#ffffff',
+      main: "#8c6a36",
+      light: "#c7a873",
+      dark: "#63481f",
+      contrastText: "#fff8ec",
     },
     error: {
-      main: '#C2185B',
-      light: '#f8bbd0',
-      dark: '#ad1457',
-      contrastText: '#ffffff',
+      main: "#b8404a",
+      light: "#e39a99",
+      dark: "#84222c",
+      contrastText: "#fff9f8",
     },
     warning: {
-      main: '#f59e0b',
-      light: '#ffe082',
-      dark: '#e65100',
-      contrastText: '#000000',
+      main: "#c78320",
+      light: "#edc276",
+      dark: "#8d5610",
+      contrastText: "#1f1708",
     },
     info: {
-      main: '#1E88E5',
-      light: '#4fc3f7',
-      dark: '#01579b',
-      contrastText: '#ffffff',
+      main: "#3e7f46",
+      light: "#8cc791",
+      dark: "#25552b",
+      contrastText: "#f7fff6",
     },
     success: {
-      main: '#0a7d5a',
-      light: '#81c784',
-      dark: '#047857',
-      contrastText: '#ffffff',
+      main: "#2f7d32",
+      light: "#81bf84",
+      dark: "#1d4f20",
+      contrastText: "#f7fff6",
     },
     background: {
-      default: '#ffffff',
-      paper: '#f8fafc',
+      default: "#eef3ea",
+      paper: "#f8f4ea",
     },
     text: {
-      primary: '#0f172a',
-      secondary: '#475569',
+      primary: "#173021",
+      secondary: "#526356",
     },
+    divider: "rgba(31, 106, 58, 0.14)",
   },
   typography: {
     fontSize: 12,
     fontFamily: BODY_FONT_FAMILY,
-    h1: { fontSize: '1.75rem', fontWeight: 600, lineHeight: 1.2, fontFamily: HEADING_FONT_FAMILY },
-    h2: { fontSize: '1.5rem', fontWeight: 600, lineHeight: 1.2, fontFamily: HEADING_FONT_FAMILY },
-    h3: { fontSize: '1.25rem', fontWeight: 600, lineHeight: 1.3, fontFamily: HEADING_FONT_FAMILY },
-    h4: { fontSize: '1.125rem', fontWeight: 600, lineHeight: 1.3, fontFamily: HEADING_FONT_FAMILY },
-    h5: { fontSize: '1rem', fontWeight: 600, lineHeight: 1.4, fontFamily: HEADING_FONT_FAMILY },
-    h6: { fontSize: '0.9375rem', fontWeight: 600, lineHeight: 1.4, fontFamily: HEADING_FONT_FAMILY },
-    body1: { fontSize: '0.8125rem', lineHeight: 1.4, fontFamily: BODY_FONT_FAMILY },
-    body2: { fontSize: '0.75rem', lineHeight: 1.4, fontFamily: BODY_FONT_FAMILY },
-    button: { fontSize: '0.8125rem', fontWeight: 500, textTransform: 'none' },
-    caption: { fontSize: '0.6875rem', lineHeight: 1.3, fontFamily: BODY_FONT_FAMILY },
-    subtitle1: { fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.4, fontFamily: HEADING_FONT_FAMILY },
-    subtitle2: { fontSize: '0.8125rem', fontWeight: 500, lineHeight: 1.4, fontFamily: HEADING_FONT_FAMILY },
-    overline: { fontFamily: HEADING_FONT_FAMILY },
+    h1: { fontSize: "1.9rem", fontWeight: 700, lineHeight: 1.15, fontFamily: HEADING_FONT_FAMILY },
+    h2: { fontSize: "1.65rem", fontWeight: 700, lineHeight: 1.15, fontFamily: HEADING_FONT_FAMILY },
+    h3: { fontSize: "1.4rem", fontWeight: 700, lineHeight: 1.2, fontFamily: HEADING_FONT_FAMILY },
+    h4: { fontSize: "1.2rem", fontWeight: 700, lineHeight: 1.25, fontFamily: HEADING_FONT_FAMILY },
+    h5: { fontSize: "1.05rem", fontWeight: 700, lineHeight: 1.3, fontFamily: HEADING_FONT_FAMILY },
+    h6: { fontSize: "0.95rem", fontWeight: 700, lineHeight: 1.3, fontFamily: HEADING_FONT_FAMILY },
+    body1: { fontSize: "0.9rem", lineHeight: 1.45, fontFamily: BODY_FONT_FAMILY },
+    body2: { fontSize: "0.8rem", lineHeight: 1.45, fontFamily: BODY_FONT_FAMILY },
+    button: { fontSize: "0.8125rem", fontWeight: 600, letterSpacing: "0.01em", textTransform: "none" },
+    caption: { fontSize: "0.7rem", lineHeight: 1.35, fontFamily: BODY_FONT_FAMILY },
+    subtitle1: { fontSize: "0.9rem", fontWeight: 600, lineHeight: 1.4, fontFamily: BODY_FONT_FAMILY },
+    subtitle2: { fontSize: "0.8125rem", fontWeight: 600, lineHeight: 1.4, fontFamily: BODY_FONT_FAMILY },
+    overline: { fontFamily: BODY_FONT_FAMILY, fontWeight: 700, letterSpacing: "0.18em" },
   },
   shape: {
-    borderRadius: 6,
+    borderRadius: 8,
   },
   spacing: 6,
   components: {
+    ...sharedComponents,
     MuiButton: {
       styleOverrides: {
-        root: {
-          padding: '4px 12px',
-          fontSize: '0.8125rem',
-          minHeight: '32px',
+        ...sharedComponents?.MuiButton?.styleOverrides,
+        text: {
+          color: "#1f6a3a",
         },
-        sizeSmall: {
-          padding: '2px 8px',
-          fontSize: '0.75rem',
-          minHeight: '28px',
+        textPrimary: {
+          color: "#1f6a3a",
         },
-      },
-    },
-    MuiTextField: {
-      defaultProps: {
-        size: 'small',
-      },
-      styleOverrides: {
-        root: {
-          '& .MuiInputBase-root': {
-            fontSize: '0.8125rem',
-          },
-          '& .MuiInputLabel-root': {
-            fontSize: '0.8125rem',
-          },
+        outlined: {
+          borderColor: "rgba(31, 106, 58, 0.28)",
+          color: "#1f6a3a",
+        },
+        outlinedPrimary: {
+          borderColor: "rgba(31, 106, 58, 0.32)",
+          color: "#1f6a3a",
         },
       },
     },
-    MuiCard: {
+    MuiAlert: {
       styleOverrides: {
-        root: {
-          padding: '8px',
+        ...sharedComponents?.MuiAlert?.styleOverrides,
+        standardInfo: {
+          border: "1px solid rgba(47, 125, 50, 0.24)",
+          backgroundColor: "rgba(129, 191, 132, 0.12)",
+          color: "#173021",
         },
-      },
-    },
-    MuiCardContent: {
-      styleOverrides: {
-        root: {
-          padding: '8px',
-          '&:last-child': {
-            paddingBottom: '8px',
-          },
-        },
-      },
-    },
-    MuiChip: {
-      styleOverrides: {
-        root: {
-          fontSize: '0.6875rem',
-          height: '20px',
-        },
-        sizeSmall: {
-          fontSize: '0.625rem',
-          height: '18px',
-        },
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          padding: '12px',
-        },
-      },
-    },
-    MuiTableCell: {
-      styleOverrides: {
-        root: {
-          fontSize: '0.8125rem',
-          padding: '8px 12px',
+        icon: {
+          color: "#2f7d32",
         },
       },
     },
     MuiIconButton: {
       styleOverrides: {
-        root: {
-          padding: '6px',
+        ...sharedComponents?.MuiIconButton?.styleOverrides,
+        colorPrimary: {
+          color: "#1f6a3a",
         },
-        sizeSmall: {
-          padding: '4px',
+      },
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          background:
+            "radial-gradient(circle at top, rgba(112, 161, 112, 0.18), transparent 24%), linear-gradient(180deg, #f4f7ef 0%, #e9f0e4 42%, #eef3ea 100%)",
         },
       },
     },
@@ -161,154 +239,121 @@ export const lightThemeOptions: ThemeOptions = {
 
 export const darkThemeOptions: ThemeOptions = {
   palette: {
-    mode: 'dark',
+    mode: "dark",
     primary: {
-      main: '#64b5f6',
-      light: '#90caf9',
-      dark: '#1e88e5',
-      contrastText: '#0f172a',
+      main: "#7bbb72",
+      light: "#a2d297",
+      dark: "#3b6b39",
+      contrastText: "#0d150f",
     },
     secondary: {
-      main: '#cbd5e1',
-      light: '#e2e8f0',
-      dark: '#94a3b8',
-      contrastText: '#0f172a',
+      main: "#d8bf8d",
+      light: "#e8d7b6",
+      dark: "#a78855",
+      contrastText: "#20170b",
     },
     error: {
-      main: '#C2185B',
-      light: '#f8bbd0',
-      dark: '#c2185b',
-      contrastText: '#0f172a',
+      main: "#de7f84",
+      light: "#f1b0af",
+      dark: "#9e434d",
+      contrastText: "#1f0f10",
     },
     warning: {
-      main: '#f59e0b',
-      light: '#fde68a',
-      dark: '#e65100',
-      contrastText: '#0f172a',
+      main: "#d8aa57",
+      light: "#ebcc8f",
+      dark: "#986d28",
+      contrastText: "#1d1408",
     },
     info: {
-      main: '#1E88E5',
-      light: '#81d4fa',
-      dark: '#0288d1',
-      contrastText: '#0f172a',
+      main: "#94ce8d",
+      light: "#bee3b8",
+      dark: "#54804e",
+      contrastText: "#0d140d",
     },
     success: {
-      main: '#0a7d5a',
-      light: '#6ee7b7',
-      dark: '#059669',
-      contrastText: '#0f172a',
+      main: "#86cf8a",
+      light: "#b2e1b5",
+      dark: "#4a8b4f",
+      contrastText: "#0d140d",
     },
     background: {
-      default: '#020617',
-      paper: '#020617',
+      default: "#0f1b14",
+      paper: "#13231a",
     },
     text: {
-      primary: '#f8fafc',
-      secondary: '#cbd5e1',
+      primary: "#edf3e8",
+      secondary: "#bfd0c0",
     },
+    divider: "rgba(135, 186, 120, 0.16)",
   },
   typography: {
     fontSize: 12,
     fontFamily: BODY_FONT_FAMILY,
-    h1: { fontSize: '1.75rem', fontWeight: 600, lineHeight: 1.2, fontFamily: HEADING_FONT_FAMILY },
-    h2: { fontSize: '1.5rem', fontWeight: 600, lineHeight: 1.2, fontFamily: HEADING_FONT_FAMILY },
-    h3: { fontSize: '1.25rem', fontWeight: 600, lineHeight: 1.3, fontFamily: HEADING_FONT_FAMILY },
-    h4: { fontSize: '1.125rem', fontWeight: 600, lineHeight: 1.3, fontFamily: HEADING_FONT_FAMILY },
-    h5: { fontSize: '1rem', fontWeight: 600, lineHeight: 1.4, fontFamily: HEADING_FONT_FAMILY },
-    h6: { fontSize: '0.9375rem', fontWeight: 600, lineHeight: 1.4, fontFamily: HEADING_FONT_FAMILY },
-    body1: { fontSize: '0.8125rem', lineHeight: 1.4, fontFamily: BODY_FONT_FAMILY },
-    body2: { fontSize: '0.75rem', lineHeight: 1.4, fontFamily: BODY_FONT_FAMILY },
-    button: { fontSize: '0.8125rem', fontWeight: 500, textTransform: 'none' },
-    caption: { fontSize: '0.6875rem', lineHeight: 1.3, fontFamily: BODY_FONT_FAMILY },
-    subtitle1: { fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.4, fontFamily: HEADING_FONT_FAMILY },
-    subtitle2: { fontSize: '0.8125rem', fontWeight: 500, lineHeight: 1.4, fontFamily: HEADING_FONT_FAMILY },
-    overline: { fontFamily: HEADING_FONT_FAMILY },
+    h1: { fontSize: "1.9rem", fontWeight: 700, lineHeight: 1.15, fontFamily: HEADING_FONT_FAMILY },
+    h2: { fontSize: "1.65rem", fontWeight: 700, lineHeight: 1.15, fontFamily: HEADING_FONT_FAMILY },
+    h3: { fontSize: "1.4rem", fontWeight: 700, lineHeight: 1.2, fontFamily: HEADING_FONT_FAMILY },
+    h4: { fontSize: "1.2rem", fontWeight: 700, lineHeight: 1.25, fontFamily: HEADING_FONT_FAMILY },
+    h5: { fontSize: "1.05rem", fontWeight: 700, lineHeight: 1.3, fontFamily: HEADING_FONT_FAMILY },
+    h6: { fontSize: "0.95rem", fontWeight: 700, lineHeight: 1.3, fontFamily: HEADING_FONT_FAMILY },
+    body1: { fontSize: "0.9rem", lineHeight: 1.45, fontFamily: BODY_FONT_FAMILY },
+    body2: { fontSize: "0.8rem", lineHeight: 1.45, fontFamily: BODY_FONT_FAMILY },
+    button: { fontSize: "0.8125rem", fontWeight: 600, letterSpacing: "0.01em", textTransform: "none" },
+    caption: { fontSize: "0.7rem", lineHeight: 1.35, fontFamily: BODY_FONT_FAMILY },
+    subtitle1: { fontSize: "0.9rem", fontWeight: 600, lineHeight: 1.4, fontFamily: BODY_FONT_FAMILY },
+    subtitle2: { fontSize: "0.8125rem", fontWeight: 600, lineHeight: 1.4, fontFamily: BODY_FONT_FAMILY },
+    overline: { fontFamily: BODY_FONT_FAMILY, fontWeight: 700, letterSpacing: "0.18em" },
   },
   shape: {
-    borderRadius: 6,
+    borderRadius: 8,
   },
   spacing: 6,
   components: {
+    ...sharedComponents,
     MuiButton: {
       styleOverrides: {
-        root: {
-          padding: '4px 12px',
-          fontSize: '0.8125rem',
-          minHeight: '32px',
+        ...sharedComponents?.MuiButton?.styleOverrides,
+        text: {
+          color: "#94ce8d",
         },
-        sizeSmall: {
-          padding: '2px 8px',
-          fontSize: '0.75rem',
-          minHeight: '28px',
+        textPrimary: {
+          color: "#94ce8d",
         },
-      },
-    },
-    MuiTextField: {
-      defaultProps: {
-        size: 'small',
-      },
-      styleOverrides: {
-        root: {
-          '& .MuiInputBase-root': {
-            fontSize: '0.8125rem',
-          },
-          '& .MuiInputLabel-root': {
-            fontSize: '0.8125rem',
-          },
+        outlined: {
+          borderColor: "rgba(148, 206, 141, 0.3)",
+          color: "#94ce8d",
+        },
+        outlinedPrimary: {
+          borderColor: "rgba(148, 206, 141, 0.36)",
+          color: "#94ce8d",
         },
       },
     },
-    MuiCard: {
+    MuiAlert: {
       styleOverrides: {
-        root: {
-          padding: '8px',
+        ...sharedComponents?.MuiAlert?.styleOverrides,
+        standardInfo: {
+          border: "1px solid rgba(148, 206, 141, 0.3)",
+          backgroundColor: "rgba(134, 207, 138, 0.12)",
+          color: "#edf3e8",
         },
-      },
-    },
-    MuiCardContent: {
-      styleOverrides: {
-        root: {
-          padding: '8px',
-          '&:last-child': {
-            paddingBottom: '8px',
-          },
-        },
-      },
-    },
-    MuiChip: {
-      styleOverrides: {
-        root: {
-          fontSize: '0.6875rem',
-          height: '20px',
-        },
-        sizeSmall: {
-          fontSize: '0.625rem',
-          height: '18px',
-        },
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          padding: '12px',
-        },
-      },
-    },
-    MuiTableCell: {
-      styleOverrides: {
-        root: {
-          fontSize: '0.8125rem',
-          padding: '8px 12px',
+        icon: {
+          color: "#94ce8d",
         },
       },
     },
     MuiIconButton: {
       styleOverrides: {
-        root: {
-          padding: '6px',
+        ...sharedComponents?.MuiIconButton?.styleOverrides,
+        colorPrimary: {
+          color: "#94ce8d",
         },
-        sizeSmall: {
-          padding: '4px',
+      },
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          background:
+            "radial-gradient(circle at top, rgba(123, 187, 114, 0.12), transparent 25%), linear-gradient(180deg, #122017 0%, #0f1b14 48%, #14241a 100%)",
         },
       },
     },
